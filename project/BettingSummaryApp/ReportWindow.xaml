@@ -1,0 +1,36 @@
+﻿<Window x:Class="BettingSummaryApp.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BettingSummaryApp.ViewModels"
+        mc:Ignorable="d"
+        Title="Отчет" Height="350" Width="920" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:ReportViewModel/>
+    </Window.DataContext>
+    <Grid Margin="0,0,-6.333,-0.333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"></RowDefinition>
+            <RowDefinition Height="55*"></RowDefinition>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="47*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="227*"></ColumnDefinition>
+            <ColumnDefinition Width="249*"></ColumnDefinition>
+            <ColumnDefinition Width="243*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid AutoGenerateColumns="False" x:Name="dd" ItemsSource="{Binding ReportSource}" Grid.ColumnSpan="3" Margin="10,26,19.667,10" Grid.RowSpan="4">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding departament.DepartamentName}" Header="Отдел" Width="90*"/>
+                <DataGridTextColumn Binding="{Binding actionStartDate, StringFormat=dd.MM.yyyy}" Header="Начало действия" Width="110*"/>
+                <DataGridTextColumn Binding="{Binding actionEndDate, StringFormat=dd.MM.yyyy}" Header="Окончание" Width="150"/>
+                <DataGridTextColumn Binding="{Binding FOTdepartament}" Header="ФОТ отдела в месяц" Width="170"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="label" Content="Итоговый отчет:" HorizontalAlignment="Left" Margin="10,1,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
